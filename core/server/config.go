@@ -225,7 +225,9 @@ type HyStream interface {
 // The implementation of this interface must be thread-safe.
 type TrafficLogger interface {
 	LogTraffic(id string, tx, rx uint64) (ok bool)
+	PushTrafficToV2boardInterval(url string, interval time.Duration)
 	LogOnlineState(id string, online bool)
+	NewKick(id string) (ok bool)
 	TraceStream(stream HyStream, stats *StreamStats)
 	UntraceStream(stream HyStream)
 }
